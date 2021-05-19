@@ -1,0 +1,101 @@
+<link rel="stylesheet" type="text/css" href="/static/css/main.css">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="static/js/index.js"></script>
+
+
+
+<!doctype html>
+
+<html>
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+<body>
+  <div class="card">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="card">
+            <div class="card-body">
+              <div class="col-sm-12">
+                <h2 id="clmb" style="background-color:rgba(19, 19, 19, 0.753);color:white">
+                  Colombo Tea Auction Ranking System
+                </h2>  
+              </div>
+            </div>     
+          </div>
+        </div>
+        <div class="col-sm-12">
+          <div class="card">
+            <div class="card-body">
+              <div class="col-sm-12">
+                <form id="target" method="post"  enctype="multipart/form-data">
+                  <div name ="up" class="upload-btn-wrapper">
+                    <button name="upload" class="btn" onchange= "predictResult()">Upload Comments</button>
+                    <!-- <button name="upload" class="btn" id="OpenpredictResult">Upload Comments</button> -->
+                    <input type="file" id="predictResult" value="go" name="file" onchange="$('#target').submit();"/>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+      <br>
+      <br>
+      <div class="col-sm-12">
+        <div class="card">
+          <div class="card-body">
+            <div class="col-sm-10" id="tbl">
+              
+
+              <table  class="dataframe data" id="tbb" >
+                <thead>
+                  <tr>
+                    {% for col in titles %}
+                    <th>{{col}}</th>
+                    {% endfor %}
+                  </tr>
+                </thead>
+                
+                {% for row in tables %}
+                <tbody>
+                  <tr>
+                    {% for col, row_ in zip(titles, row) %}
+                      {% if col == link_column %}
+                        <td id="Com1">
+                            {{ row_ }}
+                        
+                        </td>
+                      {% elif col == link_column2 %}
+                        <td id="Pred">
+                            {{ row_ }}
+                        
+                        </td>
+                      {% else %}
+                        <td>{{row_}}</td>
+                      {% endif %}
+                    {% endfor %}
+                </tr>
+                </tbody>
+                
+                {% endfor %}
+            
+              </table>
+
+            </div>
+          </div>
+        </div>
+        
+      </div>
+  
+    </div>
+  </div>
+
+
+</body>
+
+</html>
